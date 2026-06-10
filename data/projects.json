@@ -119,7 +119,7 @@
     "status": [
       { "label": "DEPLOYED", "type": "deployed" }
     ],
-    "statLine": "C-level tool · Lohia Corp R&D",
+    "statLine": "Unity 3D · Lohia Corp R&D",
     "statColor": "#A78BFA",
     "role": "Primary Developer · R&D",
     "platforms": ["Oculus Rift", "Oculus Go"],
