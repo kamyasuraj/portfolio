@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suraj Kamya — Technical Architect</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;600&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--bg:#090D14;--surface:#0F1520;--card:#141C28;--border:#1A2436;--cyan:#00C8FF;--amber:#FFB700;--red:#FF3857;--purple:#8B5CF6;--green:#22C55E;--text:#EFF3F8;--muted:#5A6A7E;--soft:#9AAFC4}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.5}
+  .mono{font-family:'JetBrains Mono',monospace}.display{font-family:'Space Grotesk',sans-serif}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(9,13,20,.92);backdrop-filter:blur(12px);z-index:100}
+  .nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;color:var(--cyan)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--soft);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .nav-cta{background:var(--cyan)!important;color:#000!important;padding:7px 18px;border-radius:6px;font-weight:600!important}
+  .hero{padding:72px 40px 56px;max-width:1100px;margin:0 auto}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(0,200,255,.08);border:1px solid rgba(0,200,255,.2);color:var(--cyan);font-size:12px;font-weight:500;padding:5px 12px;border-radius:20px;margin-bottom:28px;font-family:'JetBrains Mono',monospace}
+  .pulse-dot{width:7px;height:7px;background:var(--cyan);border-radius:50%;animation:pulse-glow 2s infinite;display:inline-block}
+  @keyframes pulse-glow{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,200,255,.4)}50%{opacity:.6;box-shadow:0 0 0 5px rgba(0,200,255,0)}}
+  @keyframes pulse-glow-green{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,197,94,.4)}50%{opacity:.6;box-shadow:0 0 0 5px rgba(34,197,94,0)}}
+  h1{font-family:'Space Grotesk',sans-serif;font-size:56px;font-weight:700;line-height:1.05;letter-spacing:-2px;margin-bottom:16px}
+  .hero-sub{font-size:17px;color:var(--soft);max-width:560px;margin-bottom:36px;line-height:1.6}
+  .hero-links{display:flex;gap:14px;flex-wrap:wrap}
+  .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--cyan);color:#000;padding:11px 22px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;transition:all .2s}
+  .btn-primary:hover{opacity:.88;transform:translateY(-1px)}
+  .btn-ghost{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);color:var(--soft);padding:10px 20px;border-radius:8px;font-size:14px;text-decoration:none;transition:all .2s}
+  .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+  .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:1100px;margin:0 auto 64px;padding:0 40px}
+  .stat-item{background:var(--surface);padding:28px 24px;text-align:center}
+  .stat-val{font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:600;color:var(--cyan);margin-bottom:4px;display:block}
+  .stat-label{font-size:12px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+  .section{max-width:1100px;margin:0 auto;padding:0 40px 72px}
+  .sec-header{display:flex;align-items:center;gap:14px;margin-bottom:32px}
+  .sec-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+  .sec-divider{flex:1;height:1px;background:var(--border)}
+  .games-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .game-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;position:relative;overflow:hidden;transition:all .25s}
+  .game-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+  .game-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent-color,var(--cyan))}
+  .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+  .card-title{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;margin-bottom:3px}
+  .card-sub{font-size:12px;color:var(--muted)}
+  .status-badge{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+  .status-live{background:rgba(34,197,94,.15);color:#22C55E;border:1px solid rgba(34,197,94,.3)}
+  .status-dev{background:rgba(255,56,87,.12);color:#FF6B7A;border:1px solid rgba(255,56,87,.25)}
+  .status-shipped{background:rgba(255,183,0,.1);color:var(--amber);border:1px solid rgba(255,183,0,.25)}
+  .card-stat{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cyan);margin:14px 0 6px;font-weight:600}
+  .card-role{font-size:11px;color:var(--muted);margin-bottom:12px}
+  .platform-tags,.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+  .platform-tag{font-size:10px;background:var(--surface);border:1px solid var(--border);color:var(--soft);padding:2px 8px;border-radius:4px;font-weight:500}
+  .card-tag{font-size:10px;color:var(--muted);background:rgba(255,255,255,.04);padding:2px 7px;border-radius:4px}
+  .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .skill-group{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
+  .skill-category{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+  .skill-chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{font-size:12px;padding:4px 10px;border-radius:6px;border:1px solid var(--border);color:var(--soft);background:var(--surface);font-weight:500;transition:all .2s}
+  .chip:hover{color:var(--text);border-color:rgba(0,200,255,.3)}
+  .timeline{display:flex;flex-direction:column}
+  .tl-item{display:grid;grid-template-columns:100px 1px 1fr;gap:0 20px;padding-bottom:24px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-year{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);padding-top:2px;text-align:right}
+  .tl-line{background:var(--border);position:relative}
+  .tl-line::before{content:'';position:absolute;width:8px;height:8px;background:var(--border);border:2px solid var(--cyan);border-radius:50%;left:-3.5px;top:5px}
+  .tl-role{font-size:14px;font-weight:600;margin-bottom:2px;font-family:'Space Grotesk',sans-serif}
+  .tl-co{font-size:12px;color:var(--muted)}
+  .research-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .research-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center}
+  .research-val{font-family:'JetBrains Mono',monospace;font-size:28px;color:var(--amber);font-weight:600;margin-bottom:4px}
+  .research-lbl{font-size:12px;color:var(--muted)}
+  @media(max-width:768px){nav{padding:16px 20px}.hero{padding:48px 20px 40px}h1{font-size:36px}.stats-bar{grid-template-columns:repeat(2,1fr);padding:0 20px}.section{padding:0 20px 48px}.games-grid,.skills-grid,.research-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">SK</div>
+  <div class="nav-links">
+    <a href="#games">Games</a><a href="#skills">Skills</a><a href="#career">Career</a>
+    <a href="mailto:kamyasuraj@yahoo.com" class="nav-cta">Hire Me</a>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-eyebrow"><span class="pulse-dot"></span><span>Available for new roles</span></div>
+  <h1>Suraj Kamya</h1>
+  <p class="hero-sub">Technical Architect building real-time multiplayer systems and live-service games at scale. 12+ years hands-on in Unity, Photon Quantum, and backend infrastructure.</p>
+  <div class="hero-links">
+    <a href="mailto:kamyasuraj@yahoo.com" class="btn-primary">kamyasuraj@yahoo.com</a>
+    <a href="https://linkedin.com/in/surajkamya" class="btn-ghost" target="_blank">LinkedIn ↗</a>
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-val">8.5M+</span><span class="stat-label">Online Matches</span></div>
+  <div class="stat-item"><span class="stat-val">230K+</span><span class="stat-label">Players Reached</span></div>
+  <div class="stat-item"><span class="stat-val">12+</span><span class="stat-label">Years in Unity</span></div>
+  <div class="stat-item"><span class="stat-val">119+</span><span class="stat-label">Research Citations</span></div>
+</div>
+<div class="section" id="games">
+  <div class="sec-header"><span class="sec-tag">Shipped</span><div class="sec-divider"></div></div>
+  <div class="games-grid">
+    <div class="game-card" style="--accent-color:#00C8FF">
+      <div class="card-header"><div><div class="card-title">Teva Run</div><div class="card-sub">Multiplayer Racing · Web3</div></div><span class="status-badge status-live"><span style="width:6px;height:6px;background:#22C55E;border-radius:50%;display:inline-block;animation:pulse-glow-green 2s infinite"></span>LIVE</span></div>
+      <div class="card-stat">8.5M+ matches · 230K+ players</div><div class="card-role">Sole Developer · Tevaera Labs</div>
+      <div class="platform-tags"><span class="platform-tag">Android</span><span class="platform-tag">iOS</span><span class="platform-tag">WebGL</span></div>
+      <div class="card-tags"><span class="card-tag">Photon Quantum</span><span class="card-tag">Nakama</span><span class="card-tag">Real-Time Multiplayer</span><span class="card-tag">Anti-Cheat</span></div>
+    </div>
+    <div class="game-card" style="--accent-color:#00C8FF">
+      <div class="card-header"><div><div class="card-title">Tevi Treat</div><div class="card-sub">Telegram Gaming Platform</div></div><span class="status-badge status-live"><span style="width:6px;height:6px;background:#22C55E;border-radius:50%;display:inline-block;animation:pulse-glow-green 2s infinite"></span>LIVE</span></div>
+      <div class="card-stat">50K+ users</div><div class="card-role">Sole Developer · Tevaera Labs</div>
+      <div class="platform-tags"><span class="platform-tag">Telegram</span></div>
+      <div class="card-tags"><span class="card-tag">LiveOps</span><span class="card-tag">Game Economy</span><span class="card-tag">Backend</span></div>
+    </div>
+    <div class="game-card" style="--accent-color:#FF3857">
+      <div class="card-header"><div><div class="card-title">Degen Rivals</div><div class="card-sub">Multiplayer Battle Royale</div></div><span class="status-badge status-dev">IN DEV</span></div>
+      <div class="card-stat" style="color:var(--red)">AI-assisted · 2× sprint output</div><div class="card-role">Technical Architect · Tevaera Labs</div>
+      <div class="platform-tags"><span class="platform-tag">Steam</span><span class="platform-tag">Android</span><span class="platform-tag">iOS</span></div>
+      <div class="card-tags"><span class="card-tag">Claude + Codex</span><span class="card-tag">AI Engineering</span></div>
+    </div>
+    <div class="game-card" style="--accent-color:#FFB700">
+      <div class="card-header"><div><div class="card-title">Monki Space</div><div class="card-sub">3D Toy Configurator · B2C</div></div><span class="status-badge status-shipped">SHIPPED</span></div>
+      <div class="card-stat" style="color:var(--amber)">WebGL · 3D Printing pipeline</div><div class="card-role">Sole Developer & Founder</div>
+      <div class="platform-tags"><span class="platform-tag">WebGL</span><span class="platform-tag">3D Print</span></div>
+      <div class="card-tags"><span class="card-tag">Unity WebGL</span><span class="card-tag">B2C Kids</span></div>
+    </div>
+    <div class="game-card" style="--accent-color:#8B5CF6">
+      <div class="card-header"><div><div class="card-title">VR Factory Viz</div><div class="card-sub">Industrial VR Simulation</div></div><span class="status-badge" style="background:rgba(139,92,246,.12);color:#A78BFA;border:1px solid rgba(139,92,246,.25);font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px">DEPLOYED</span></div>
+      <div class="card-stat" style="color:#A78BFA">C-level tool · Lohia Corp R&D</div><div class="card-role">Primary Developer</div>
+      <div class="platform-tags"><span class="platform-tag">Oculus Rift</span><span class="platform-tag">Oculus Go</span></div>
+      <div class="card-tags"><span class="card-tag">Oculus SDK</span><span class="card-tag">Industrial VR</span></div>
+    </div>
+    <div class="game-card" style="--accent-color:#6B7A8D">
+      <div class="card-header"><div><div class="card-title">Casino Titles</div><div class="card-sub">Long Bao Bao · Shamrock Fortunes</div></div><span class="status-badge status-shipped">SHIPPED</span></div>
+      <div class="card-stat" style="color:var(--soft)">Class-II/III · AGS</div><div class="card-role">Senior Developer · Ingenuity Gaming</div>
+      <div class="platform-tags"><span class="platform-tag">EGM</span><span class="platform-tag">Casino</span></div>
+      <div class="card-tags"><span class="card-tag">Unity</span><span class="card-tag">Regulatory Compliance</span></div>
+    </div>
+  </div>
+</div>
+<div class="section" id="skills">
+  <div class="sec-header"><span class="sec-tag">Stack</span><div class="sec-divider"></div></div>
+  <div class="skills-grid">
+    <div class="skill-group"><div class="skill-category">Core Engineering</div><div class="skill-chips"><span class="chip">Unity 3D</span><span class="chip">C#</span><span class="chip">WebGL</span><span class="chip">Git</span><span class="chip">Unity Addressables</span><span class="chip">Unity Profiler</span></div></div>
+    <div class="skill-group"><div class="skill-category">Multiplayer & Networking</div><div class="skill-chips"><span class="chip">Photon Quantum</span><span class="chip">Deterministic Networking</span><span class="chip">Matchmaking</span><span class="chip">Anti-Cheat</span></div></div>
+    <div class="skill-group"><div class="skill-category">Backend & Infrastructure</div><div class="skill-chips"><span class="chip">Nakama</span><span class="chip">Go</span><span class="chip">REST / GraphQL</span><span class="chip">Cloud Deployment</span></div></div>
+    <div class="skill-group"><div class="skill-category">LiveOps & Monetization</div><div class="skill-chips"><span class="chip">LiveOps & Analytics</span><span class="chip">Steam IAP</span><span class="chip">Apple IAP</span><span class="chip">Google Play Billing</span><span class="chip">Unity Ads</span></div></div>
+    <div class="skill-group"><div class="skill-category">AI-Assisted Development</div><div class="skill-chips"><span class="chip">Claude</span><span class="chip">OpenAI Codex</span><span class="chip">Multi-Agent Workflows</span></div></div>
+    <div class="skill-group"><div class="skill-category">Platform & Secondary</div><div class="skill-chips"><span class="chip">Steam</span><span class="chip">AR/VR (Oculus)</span><span class="chip">Web3 & Blockchain</span><span class="chip">Figma</span><span class="chip">Agile</span></div></div>
+  </div>
+</div>
+<div class="section" id="career">
+  <div class="sec-header"><span class="sec-tag">Career</span><div class="sec-divider"></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-year">2022–Now</div><div class="tl-line"></div><div><div class="tl-role">Technical Architect</div><div class="tl-co">Tevaera Labs</div></div></div>
+      <div class="tl-item"><div class="tl-year">2022</div><div class="tl-line"></div><div><div class="tl-role">Senior Game Developer</div><div class="tl-co">Ingenuity Gaming</div></div></div>
+      <div class="tl-item"><div class="tl-year">2020–22</div><div class="tl-line"></div><div><div class="tl-role">Founder & CEO</div><div class="tl-co">Monki Space</div></div></div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-year">2017–20</div><div class="tl-line"></div><div><div class="tl-role">Senior Engineer, R&D</div><div class="tl-co">Lohia Corp</div></div></div>
+      <div class="tl-item"><div class="tl-year">2014–17</div><div class="tl-line"></div><div><div class="tl-role">Assistant Professor</div><div class="tl-co">IIMT College</div></div></div>
+      <div class="tl-item"><div class="tl-year">2013–14</div><div class="tl-line"></div><div><div class="tl-role">MATLAB Consultant</div><div class="tl-co">SO Infotech</div></div></div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="sec-header"><span class="sec-tag">Research</span><div class="sec-divider"></div></div>
+  <div class="research-row">
+    <div class="research-card"><div class="research-val">9+</div><div class="research-lbl">Published papers in AI &<br>Computer Vision</div></div>
+    <div class="research-card"><div class="research-val">119+</div><div class="research-lbl">Citations on<br>Google Scholar</div></div>
+    <div class="research-card"><div class="research-val">h-6</div><div class="research-lbl">h-index · IEEE, Springer<br>& Elsevier</div></div>
+  </div>
+</div>
+<div style="border-top:1px solid var(--border);padding:32px 40px;max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+  <div style="font-size:13px;color:var(--muted)">Suraj Kamya · Technical Architect · Hisar, India<br><span style="font-family:'JetBrains Mono',monospace;font-size:11px">M.Tech AI · LPU Jalandhar · CGPA 8.5</span></div>
+  <div style="display:flex;gap:20px">
+    <a href="mailto:kamyasuraj@yahoo.com" style="color:var(--soft);text-decoration:none;font-size:13px">kamyasuraj@yahoo.com</a>
+    <a href="tel:+919871989941" style="color:var(--soft);text-decoration:none;font-size:13px">+91-9871989941</a>
+    <a href="https://linkedin.com/in/surajkamya" target="_blank" style="color:var(--soft);text-decoration:none;font-size:13px">LinkedIn ↗</a>
+  </div>
+</div>
+</body>
+</html>
