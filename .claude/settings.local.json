@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\kamya\\\\OneDrive\\\\Desktop\\\\Portfolio\\\\assets\\\\images\")",
+      "PowerShell([System.IO.File]::ReadAllBytes\\(\"C:\\\\Users\\\\kamya\\\\OneDrive\\\\Desktop\\\\Portfolio\\\\assets\\\\images\\\\degen-rivals.jpg\"\\)[0..3] -join ',')",
+      "WebFetch(domain:vimeo.com)",
+      "PowerShell(\\(Get-Item \"C:\\\\Users\\\\kamya\\\\OneDrive\\\\Desktop\\\\Portfolio\\\\assets\\\\images\\\\shamrock-fortunes.jpg\"\\).Length)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

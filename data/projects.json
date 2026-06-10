@@ -1,0 +1,131 @@
+[
+  {
+    "id": "degen-rivals",
+    "title": "DegenRivals",
+    "subtitle": "Battle Arena · Real-time Multiplayer",
+    "status": [
+      { "label": "DEMO", "type": "shipped" },
+      { "label": "IN DEV", "type": "dev" }
+    ],
+    "statLine": "AI-assisted · 2× sprint output",
+    "statColor": "var(--red)",
+    "role": "Technical Architect · Tevaera Labs",
+    "platforms": ["Steam", "Android", "iOS"],
+    "tags": ["Claude", "Unity3D", "Nakama", "Photon Quantum"],
+    "accentColor": "#FF3857",
+    "thumbnail": "assets/images/degen-rivals.jpg",
+    "video": { "platform": "youtube", "id": "Tq5EYTv0JVw" }
+  },
+  {
+    "id": "teva-run",
+    "title": "Teva Run",
+    "subtitle": "Real-Time Multiplayer Racing · Web3",
+    "status": [
+      { "label": "LIVE", "type": "live" }
+    ],
+    "statLine": "8.5M+ matches · 230K+ players",
+    "statColor": "var(--cyan)",
+    "role": "Sole Developer · Tevaera Labs",
+    "platforms": ["Android", "iOS", "WebGL"],
+    "tags": ["Unity 2D", "Nakama", "Real-Time Multiplayer", "Live Ops", "Anti-Cheat"],
+    "accentColor": "#00C8FF",
+    "thumbnail": "assets/images/teva-run.jpg",
+    "video": { "platform": "youtube", "id": "Cj2p3LKwJgc" }
+  },
+  {
+    "id": "tevi-treat",
+    "title": "Tevi Treat",
+    "subtitle": "Telegram Gaming Platform",
+    "status": [
+      { "label": "LIVE", "type": "live" }
+    ],
+    "statLine": "50K+ users",
+    "statColor": "var(--cyan)",
+    "role": "Sole Developer · Tevaera Labs",
+    "platforms": ["Telegram"],
+    "tags": ["LiveOps", "Game Economy", "Backend", "Unity"],
+    "accentColor": "#00C8FF",
+    "thumbnail": "assets/images/tevi-treat.jpg",
+    "video": { "platform": "youtube", "id": "9QiiUkQeT8U" }
+  },
+  {
+    "id": "ogami-conquest",
+    "title": "Ogami Conquest",
+    "subtitle": "MOBA · Beta",
+    "status": [
+      { "label": "BETA", "type": "shipped" }
+    ],
+    "statLine": "MOBA gameplay showcase",
+    "statColor": "var(--amber)",
+    "role": "Lead Developer",
+    "platforms": ["PC"],
+    "tags": ["MOBA", "Unity3D", "Multiplayer"],
+    "accentColor": "#FFB700",
+    "thumbnail": "assets/images/ogami-conquest.jpg",
+    "video": { "platform": "youtube", "id": "OzUcVuskfAU" }
+  },
+  {
+    "id": "long-bao-bao",
+    "title": "Long Bao Bao",
+    "subtitle": "Casino Slot · EGM",
+    "status": [
+      { "label": "SHIPPED", "type": "shipped" }
+    ],
+    "statLine": "Class-II/III compliance · AGS",
+    "statColor": "var(--soft)",
+    "role": "Senior Developer · Ingenuity Gaming",
+    "platforms": ["EGM", "Casino"],
+    "tags": ["Unity", "Regulatory Compliance", "UI Systems"],
+    "accentColor": "#E8A020",
+    "thumbnail": "assets/images/long-bao-bao.png",
+    "video": { "platform": "vimeo", "id": "754408566/eff6c69af9" }
+  },
+  {
+    "id": "shamrock-fortunes",
+    "title": "Shamrock Fortunes",
+    "subtitle": "Casino Slot · EGM",
+    "status": [
+      { "label": "SHIPPED", "type": "shipped" }
+    ],
+    "statLine": "Triple Coin Treasures family · AGS",
+    "statColor": "var(--soft)",
+    "role": "Senior Developer · Ingenuity Gaming",
+    "platforms": ["EGM", "Casino"],
+    "tags": ["Unity", "Regulatory Compliance", "UI Systems"],
+    "accentColor": "#22C55E",
+    "thumbnail": "assets/images/shamrock-fortunes.jpg",
+    "video": { "platform": "vimeo", "id": "756991227/768db638eb" }
+  },
+  {
+    "id": "monki-space",
+    "title": "Monki Space",
+    "subtitle": "3D Toy Configurator · B2C Kids",
+    "status": [
+      { "label": "SHIPPED", "type": "shipped" }
+    ],
+    "statLine": "WebGL · 3D Printing pipeline",
+    "statColor": "var(--amber)",
+    "role": "Sole Developer & Founder",
+    "platforms": ["WebGL", "3D Print"],
+    "tags": ["Unity WebGL", "B2C Kids", "3D Printing"],
+    "accentColor": "#FFB700",
+    "thumbnail": "assets/images/monki-space.jpg",
+    "video": { "platform": "youtube", "id": "MX9uRvlb3e8" }
+  },
+  {
+    "id": "vr-factory-viz",
+    "title": "VR Factory Viz",
+    "subtitle": "Industrial VR Simulation",
+    "status": [
+      { "label": "DEPLOYED", "type": "deployed" }
+    ],
+    "statLine": "C-level tool · Lohia Corp R&D",
+    "statColor": "#A78BFA",
+    "role": "Primary Developer · R&D",
+    "platforms": ["Oculus Rift", "Oculus Go"],
+    "tags": ["Oculus SDK", "Industrial VR", "Simulation"],
+    "accentColor": "#8B5CF6",
+    "thumbnail": "assets/images/vr-factory-viz.jpg",
+    "video": null
+  }
+]
