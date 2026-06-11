@@ -128,6 +128,7 @@
     .footer{padding:20px;flex-direction:column;text-align:center}
   }
 </style>
+<link rel="stylesheet" href="assets/css/mario-stats.css?v=4">
 </head>
 <body>
 <nav>
@@ -172,6 +173,7 @@
   <div class="stat-item"><span class="stat-val">230K+</span><span class="stat-label">Players Reached</span></div>
   <div class="stat-item"><span class="stat-val">12+</span><span class="stat-label">Years in Unity</span></div>
   <div class="stat-item"><span class="stat-val">8+</span><span class="stat-label">Games & Projects</span></div>
+  <div class="mario-stage" id="marioStage" aria-hidden="true"></div>
 </div>
 
 <div class="section" id="games">
@@ -304,5 +306,6 @@ function renderCards(projects){
 
 fetch('data/projects.json').then(function(r){return r.json();}).then(renderCards);
 </script>
+<script src="assets/js/mario-stats.js?v=4" defer></script>
 </body>
 </html>

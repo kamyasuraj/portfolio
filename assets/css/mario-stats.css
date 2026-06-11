@@ -1,0 +1,193 @@
+/* ============================================================
+   Retro Mario theme + animated stats-bar stage
+   - Subtle pixel-icon background pattern (body)
+   - Mario stage overlaying the bottom of the stats bar
+   - Pixelated character sprites with walk / jump / drag states
+   ============================================================ */
+
+/* ---------- Mario stage hosted inside the stats-bar ---------- */
+.stats-bar { position: relative; }
+
+.mario-stage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42px;
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* faint ground line so characters look planted */
+.mario-stage::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 0;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(0, 200, 255, 0.25) 0 6px,
+    transparent 6px 12px
+  );
+  opacity: 0.5;
+}
+
+/* ---------- Character ---------- */
+.mario-character {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 24px;
+  height: 32px;
+  pointer-events: auto;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  will-change: transform;
+  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.4));
+}
+.mario-character.grabbing,
+.mario-character.dragging { cursor: grabbing; }
+.mario-character.dragging {
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.55));
+  z-index: 9999;
+}
+.mario-character:hover .mario-sprite { filter: brightness(1.15); }
+
+.mario-sprite {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+  transition: filter 0.15s;
+}
+.mario-character.face-left .mario-sprite { transform: scaleX(-1); }
+
+.mario-frame {
+  position: absolute;
+  inset: 0;
+}
+.mario-frame svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+}
+.mario-frame-b { display: none; }
+.mario-character.step-b .mario-frame-a { display: none; }
+.mario-character.step-b .mario-frame-b { display: block; }
+
+/* ---------- Animation states ---------- */
+.mario-character.jump .mario-sprite {
+  animation: mario-jump 0.5s ease-out;
+}
+.mario-character.face-left.jump .mario-sprite {
+  animation: mario-jump-left 0.5s ease-out;
+}
+.mario-character.teased .mario-sprite {
+  animation: mario-tease 0.6s ease-out;
+}
+.mario-character.face-left.teased .mario-sprite {
+  animation: mario-tease-left 0.6s ease-out;
+}
+.mario-character.spawning { animation: mario-spawn 0.5s ease-out; }
+.mario-character.vanishing { animation: mario-vanish 0.32s ease-in forwards; }
+.mario-character.squished .mario-sprite {
+  animation: mario-squish 0.28s ease-out forwards;
+}
+
+@keyframes mario-jump {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-18px); }
+}
+@keyframes mario-jump-left {
+  0%, 100% { transform: scaleX(-1) translateY(0); }
+  50%      { transform: scaleX(-1) translateY(-18px); }
+}
+@keyframes mario-tease {
+  0%   { transform: translateY(0) rotate(0); }
+  25%  { transform: translateY(-14px) rotate(-14deg); }
+  55%  { transform: translateY(-22px) rotate(12deg); }
+  80%  { transform: translateY(-8px)  rotate(-6deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+@keyframes mario-tease-left {
+  0%   { transform: scaleX(-1) translateY(0) rotate(0); }
+  25%  { transform: scaleX(-1) translateY(-14px) rotate(14deg); }
+  55%  { transform: scaleX(-1) translateY(-22px) rotate(-12deg); }
+  80%  { transform: scaleX(-1) translateY(-8px)  rotate(6deg); }
+  100% { transform: scaleX(-1) translateY(0) rotate(0); }
+}
+@keyframes mario-spawn {
+  0%   { opacity: 0; }
+  60%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+@keyframes mario-vanish {
+  to { opacity: 0; filter: brightness(2); }
+}
+@keyframes mario-squish {
+  0%   { transform: scaleY(1); }
+  100% { transform: scaleY(0.25) translateY(12px); }
+}
+
+/* ---------- Speech bubble ---------- */
+.mario-bubble {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 4px);
+  transform: translateX(-50%);
+  background: #fff;
+  color: #111;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 3px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+  animation: bubble-pop 0.22s ease-out;
+}
+.mario-bubble::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  margin-left: -3px;
+  border: 3px solid transparent;
+  border-top-color: #fff;
+}
+.mario-bubble[hidden] { display: none; }
+@keyframes bubble-pop {
+  0%   { transform: translateX(-50%) scale(0); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+/* ---------- Star/dust on tease ---------- */
+.mario-spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--amber, #FFB700);
+  pointer-events: none;
+  animation: spark-fly 0.7s ease-out forwards;
+}
+@keyframes spark-fly {
+  0%   { opacity: 1; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: var(--spark-end, translate(20px, -20px) scale(0.4)); }
+}
+
+/* ---------- Reduce motion preference ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .mario-stage { display: none; }
+}
+
+/* ---------- Mobile: hide stage on tiny screens to keep stats clean ---------- */
+@media (max-width: 540px) {
+  .mario-stage { height: 36px; }
+}
