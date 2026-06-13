@@ -38,7 +38,10 @@
   .pulse-dot{width:7px;height:7px;background:var(--cyan);border-radius:50%;animation:pulse-glow 2s infinite;display:inline-block;flex-shrink:0}
   @keyframes pulse-glow{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,200,255,.4)}50%{opacity:.6;box-shadow:0 0 0 6px rgba(0,200,255,0)}}
   @keyframes pulse-glow-green{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,197,94,.4)}50%{opacity:.6;box-shadow:0 0 0 5px rgba(34,197,94,0)}}
-  h1{font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:700;line-height:1.05;letter-spacing:-2px;margin-bottom:14px;color:var(--text)}
+  h1{font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:700;line-height:1.05;letter-spacing:-2px;margin-bottom:10px;color:var(--text)}
+  .hero-headline{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;line-height:1.4;margin-bottom:14px;color:var(--text);letter-spacing:-.2px}
+  .hero-headline .hl-sep{color:var(--cyan);font-weight:500;margin:0 6px;opacity:.7}
+  .hero-headline .hl-accent{color:var(--cyan)}
   .hero-sub{font-size:16px;color:var(--soft);margin-bottom:28px;line-height:1.65}
   .contact-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
   .contact-item{display:inline-flex;align-items:center;gap:7px;color:var(--soft);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
@@ -144,6 +147,7 @@
 <div class="hero">
   <div class="hero-left">
     <h1>Suraj Kamya</h1>
+    <p class="hero-headline">Hands-On <span class="hl-accent">AI Native Unity</span> Technical Architect<span class="hl-sep">|</span>Real-Time Multiplayer &amp; Live Service<span class="hl-sep">|</span>Photon Quantum · Nakama<span class="hl-sep">|</span>AI Engineering</p>
     <p class="hero-sub">Technical Architect building real-time multiplayer systems and live-service games at scale. 12+ years hands-on in Unity, Nakama, Photon Quantum, Web-3 and backend infrastructure.</p>
     <div class="contact-row">
       <a href="https://linkedin.com/in/surajkamya" target="_blank" class="contact-item">
