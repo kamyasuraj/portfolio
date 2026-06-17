@@ -633,7 +633,8 @@ function renderCards(projects){
       return '<span class="status-badge status-'+s.type+'">'+s.label+'</span>';
     }).join('');
     var playOverlay=p.video?'<div class="play-overlay"><div class="play-btn"></div></div>':'';
-    return '<div '+onclick+' class="game-card" data-category="'+(p.category||'')+'" style="--accent-color:'+p.accentColor+'">'
+    var cats=(p.categories||[]).join('|');
+    return '<div '+onclick+' class="game-card" data-categories="'+cats+'" style="--accent-color:'+p.accentColor+'">'
       +'<div class="card-thumb"><img src="'+p.thumbnail+'" alt="'+p.title+'" loading="lazy">'+playOverlay+'</div>'
       +'<div class="card-body">'
       +'<div class="card-header"><div><div class="card-title">'+p.title+'</div><div class="card-sub">'+p.subtitle+'</div></div>'+statusHtml+'</div>'
@@ -654,7 +655,9 @@ function buildFilterChips(projects){
   var host=document.getElementById('filterChips');
   if(!host) return;
   var cats=['All'];
-  projects.forEach(function(p){if(p.category&&cats.indexOf(p.category)===-1) cats.push(p.category);});
+  projects.forEach(function(p){
+    (p.categories||[]).forEach(function(c){if(cats.indexOf(c)===-1) cats.push(c);});
+  });
   host.innerHTML=cats.map(function(c,i){
     return '<button class="filter-chip'+(i===0?' active':'')+'" data-cat="'+c+'" role="tab" aria-selected="'+(i===0)+'">'+c+'</button>';
   }).join('')+'<span class="filter-count" id="filterCount"></span>';
@@ -670,7 +673,8 @@ function buildFilterChips(projects){
     });
     var shown=0;
     document.querySelectorAll('#gamesGrid .game-card').forEach(function(card){
-      var match=cat==='All'||card.dataset.category===cat;
+      var cardCats=(card.dataset.categories||'').split('|');
+      var match=cat==='All'||cardCats.indexOf(cat)!==-1;
       card.classList.toggle('filter-hidden',!match);
       if(match) shown++;
     });
