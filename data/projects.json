@@ -23,7 +23,7 @@
     "status": [
       { "label": "LIVE", "type": "live" }
     ],
-    "statLine": "8.5M+ matches · 230K+ players",
+    "statLine": "8.5M+ matches · 280K+ players",
     "statColor": "var(--cyan)",
     "role": "Sole Developer · Tevaera Labs",
     "platforms": ["Android", "iOS", "WebGL"],
