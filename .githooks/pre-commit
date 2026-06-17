@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+# Block commits that introduce common secret patterns.
+# Bypass (only if you are absolutely sure) with: git commit --no-verify
+
+set -u
+
+PATTERNS=(
+  'ghp_[A-Za-z0-9]{36}'
+  'gho_[A-Za-z0-9]{36}'
+  'ghu_[A-Za-z0-9]{36}'
+  'ghs_[A-Za-z0-9]{36}'
+  'ghr_[A-Za-z0-9]{36}'
+  'github_pat_[A-Za-z0-9_]{20,}'
+  'AKIA[0-9A-Z]{16}'
+  'ASIA[0-9A-Z]{16}'
+  'AIza[0-9A-Za-z_-]{35}'
+  'sk-ant-[A-Za-z0-9_-]{20,}'
+  'sk-proj-[A-Za-z0-9_-]{20,}'
+  'xox[abprs]-[A-Za-z0-9-]{10,}'
+  'https?://[A-Za-z0-9._~+-]+:[A-Za-z0-9._~+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+'
+  '-----BEGIN [A-Z ]*PRIVATE KEY-----'
+)
+
+LABELS=(
+  'GitHub PAT (classic)'
+  'GitHub OAuth token'
+  'GitHub user-to-server token'
+  'GitHub server token'
+  'GitHub refresh token'
+  'GitHub fine-grained PAT'
+  'AWS access key'
+  'AWS temp access key'
+  'Google API key'
+  'Anthropic API key'
+  'OpenAI project key'
+  'Slack token'
+  'URL with embedded credentials'
+  'Private key block'
+)
+
+diff=$(git diff --cached --no-color -U0 --diff-filter=AM 2>/dev/null)
+[ -z "$diff" ] && exit 0
+
+found=0
+report=""
+i=0
+while [ $i -lt ${#PATTERNS[@]} ]; do
+  pat="${PATTERNS[$i]}"
+  label="${LABELS[$i]}"
+  hits=$(printf '%s\n' "$diff" | grep -nE "^\+.*${pat}" || true)
+  if [ -n "$hits" ]; then
+    found=1
+    report="${report}
+  [${label}]  pattern: ${pat}
+${hits}
+"
+  fi
+  i=$((i + 1))
+done
+
+if [ $found -eq 1 ]; then
+  echo ""
+  echo "================================================================"
+  echo "  COMMIT BLOCKED  -  possible secret detected in staged changes"
+  echo "================================================================"
+  printf '%s\n' "$report"
+  echo "----------------------------------------------------------------"
+  echo "  If this is a verified false positive:"
+  echo "    git commit --no-verify"
+  echo "  Otherwise: unstage the file, remove the secret, then re-stage."
+  echo "================================================================"
+  exit 1
+fi
+
+exit 0
