@@ -1,6 +1,7 @@
 [
   {
     "id": "degen-rivals",
+    "category": "Multiplayer",
     "title": "DegenRivals",
     "subtitle": "Battle Arena · Real-time Multiplayer",
     "status": [
@@ -18,6 +19,7 @@
   },
   {
     "id": "teva-run",
+    "category": "Multiplayer",
     "title": "Teva Run",
     "subtitle": "Real-Time Multiplayer Racing · Web3",
     "status": [
@@ -34,6 +36,7 @@
   },
   {
     "id": "tevi-treat",
+    "category": "Web3",
     "title": "Tevi Treat",
     "subtitle": "Telegram Gaming Platform",
     "status": [
@@ -50,6 +53,7 @@
   },
   {
     "id": "ogami-conquest",
+    "category": "Multiplayer",
     "title": "Ogami Conquest",
     "subtitle": "MOBA · Beta",
     "status": [
@@ -66,6 +70,7 @@
   },
   {
     "id": "long-bao-bao",
+    "category": "Casino",
     "title": "Long Bao Bao",
     "subtitle": "Casino Slot · EGM",
     "status": [
@@ -82,6 +87,7 @@
   },
   {
     "id": "shamrock-fortunes",
+    "category": "Casino",
     "title": "Shamrock Fortunes",
     "subtitle": "Casino Slot · EGM",
     "status": [
@@ -98,6 +104,7 @@
   },
   {
     "id": "monki-space",
+    "category": "WebGL",
     "title": "Monki Space",
     "subtitle": "3D Toy Configurator · B2C Kids",
     "status": [
@@ -114,6 +121,7 @@
   },
   {
     "id": "vr-factory-viz",
+    "category": "XR",
     "title": "VR Factory Viz",
     "subtitle": "Industrial VR Simulation",
     "status": [
