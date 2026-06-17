@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OG Card — Suraj Kamya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#05080F}
+  body{display:flex;align-items:center;justify-content:center;min-height:100vh}
+  .card{
+    width:1200px;height:630px;
+    background:
+      radial-gradient(ellipse at 85% 20%, rgba(0,200,255,.22) 0%, transparent 55%),
+      radial-gradient(ellipse at 10% 90%, rgba(139,92,246,.14) 0%, transparent 55%),
+      linear-gradient(135deg, #0A1220 0%, #0F1520 100%);
+    position:relative;overflow:hidden;
+    padding:72px 80px;
+    font-family:'Space Grotesk',-apple-system,sans-serif;color:#EFF3F8;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .dot-grid{
+    position:absolute;inset:0;
+    background-image:radial-gradient(rgba(154,175,196,.08) 1px, transparent 1px);
+    background-size:24px 24px;
+    mask-image:linear-gradient(180deg, transparent 0, #000 30%, #000 70%, transparent 100%);
+    pointer-events:none;
+  }
+  .accent-bar{
+    position:absolute;left:0;top:80px;bottom:80px;width:6px;
+    background:linear-gradient(180deg,#00C8FF 0%, #8B5CF6 100%);
+    border-radius:0 4px 4px 0;
+  }
+  .top{position:relative;z-index:2}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;
+    color:#00C8FF;letter-spacing:.18em;text-transform:uppercase;
+    margin-bottom:24px;
+  }
+  .eyebrow .dot{width:9px;height:9px;background:#00C8FF;border-radius:50%;box-shadow:0 0 12px #00C8FF}
+  h1{
+    font-size:104px;font-weight:700;line-height:1;letter-spacing:-3px;
+    margin-bottom:22px;
+  }
+  .role{
+    font-size:46px;font-weight:600;line-height:1.1;
+    color:#EFF3F8;margin-bottom:18px;letter-spacing:-1px;
+  }
+  .role .accent{color:#00C8FF}
+  .sub{
+    font-size:24px;font-weight:500;color:#9AAFC4;line-height:1.5;
+    max-width:980px;
+  }
+  .bottom{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+  .logos{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .chip{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 22px;border-radius:10px;
+    background:rgba(15,21,32,.7);border:1px solid rgba(255,255,255,.12);
+    font-size:22px;font-weight:600;color:#EFF3F8;
+    backdrop-filter:blur(8px);
+  }
+  .chip .swatch{width:14px;height:14px;border-radius:3px}
+  .chip.unity .swatch{background:#fff}
+  .chip.nakama .swatch{background:#FF6B35}
+  .chip.photon .swatch{background:#00C8FF}
+  .chip.ai .swatch{background:#8B5CF6}
+  .url{
+    font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;
+    color:#5A6A7E;white-space:nowrap;
+  }
+  .url .live{color:#22C55E}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="dot-grid"></div>
+    <div class="accent-bar"></div>
+
+    <div class="top">
+      <div class="eyebrow"><span class="dot"></span>Available for hire</div>
+      <h1>Suraj Kamya</h1>
+      <div class="role">Hands-On <span class="accent">AI Native Unity</span> Technical Architect</div>
+      <div class="sub">Real-time multiplayer &amp; live-service games at scale. 12+ years building with Unity, Photon Quantum, Nakama &amp; backend infra.</div>
+    </div>
+
+    <div class="bottom">
+      <div class="logos">
+        <span class="chip unity"><span class="swatch"></span>Unity</span>
+        <span class="chip photon"><span class="swatch"></span>Photon Quantum</span>
+        <span class="chip nakama"><span class="swatch"></span>Nakama</span>
+        <span class="chip ai"><span class="swatch"></span>AI Engineering</span>
+      </div>
+      <div class="url"><span class="live">●</span>&nbsp;kamyasuraj.github.io/portfolio</div>
+    </div>
+  </div>
+</body>
+</html>
