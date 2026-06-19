@@ -582,11 +582,18 @@
 </div>
 
 <script>
+function gcEvent(name,title){
+  if(window.goatcounter&&window.goatcounter.count){
+    window.goatcounter.count({path:name,title:title||name,event:true});
+  }
+}
+
 function toggleTheme(){
   const h=document.documentElement,b=document.getElementById('themeBtn');
   const dark=h.getAttribute('data-theme')==='dark';
   h.setAttribute('data-theme',dark?'light':'dark');
   b.textContent=dark?'🌙':'☀️';
+  gcEvent('theme-toggle','Theme: '+(dark?'light':'dark'));
 }
 document.getElementById('themeBtn').textContent='🌙';
 
@@ -603,6 +610,7 @@ function playVideo(videoId,platform){
   modal.setAttribute('data-video-id',videoId);
   modal.setAttribute('data-platform',platform||'youtube');
   document.body.style.overflow='hidden';
+  gcEvent('video-play','Video: '+videoId+' ('+(platform||'youtube')+')');
 }
 function closeVideo(){
   document.getElementById('videoFrame').src='';
@@ -679,6 +687,7 @@ function buildFilterChips(projects){
       if(match) shown++;
     });
     updateFilterCount(cat,shown);
+    gcEvent('filter/'+cat.toLowerCase(),'Filter: '+cat);
   });
 }
 function updateFilterCount(cat,n){
@@ -709,6 +718,10 @@ document.querySelectorAll('.tl-header').forEach(function(btn){
     var content=btn.closest('.tl-content');
     var open=content.classList.toggle('expanded');
     btn.setAttribute('aria-expanded',open?'true':'false');
+    if(open){
+      var roleEl=btn.querySelector('.tl-role');
+      gcEvent('career-expand',roleEl?'Career: '+roleEl.textContent:'Career expand');
+    }
   });
 });
 
@@ -771,6 +784,7 @@ document.querySelectorAll('.tl-header').forEach(function(btn){
       if(navigator.clipboard&&navigator.clipboard.writeText){
         navigator.clipboard.writeText(text).then(function(){showToast('Copied: '+text);}).catch(function(){fallback(text);});
       }else{fallback(text);}
+      gcEvent(text.indexOf('@')>-1?'email-copy':'phone-copy',(text.indexOf('@')>-1?'Email copy: ':'Phone copy: ')+text);
     });
   });
   function fallback(text){
@@ -796,7 +810,21 @@ document.querySelectorAll('.tl-header').forEach(function(btn){
   },{passive:true});
   btn.addEventListener('click',function(){
     window.scrollTo({top:0,behavior:'smooth'});
+    gcEvent('back-to-top','Back to top');
   });
+})();
+
+/* nav / external link tracking */
+(function(){
+  function on(sel,name,title){
+    document.querySelectorAll(sel).forEach(function(el){
+      el.addEventListener('click',function(){gcEvent(name,title);});
+    });
+  }
+  on('.nav-cv','cv-download','CV download');
+  on('.nav-cta','hire-me','Hire Me click');
+  on('a[href*="linkedin.com"]','linkedin-click','LinkedIn click');
+  on('.sec-link[href*="scholar.google.com"]','scholar-click','Google Scholar click');
 })();
 
 (function(){
@@ -846,5 +874,6 @@ document.querySelectorAll('.tl-header').forEach(function(btn){
 })();
 </script>
 <script src="assets/js/mario-stats.js?v=4" defer></script>
+<script data-goatcounter="https://kamyasuraj.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
