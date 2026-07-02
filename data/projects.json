@@ -5,8 +5,7 @@
     "title": "DegenRivals",
     "subtitle": "Battle Arena · Real-time Multiplayer",
     "status": [
-      { "label": "DEMO", "type": "shipped" },
-      { "label": "IN DEV", "type": "dev" }
+      { "label": "BETA", "type": "shipped" }
     ],
     "statLine": "AI-assisted · 2× sprint output",
     "statColor": "var(--red)",
